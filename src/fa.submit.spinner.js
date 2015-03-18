@@ -16,7 +16,7 @@ var faSpinner = {
 	defaults : {
 		'fontawesome_required' : true,
 		'fontawesome_url' : '//cdn-backslash.ch/lib/font-awesome/4.3/css/font-awesome.min.css',
-		'btn_text' : '<i class="fa fa-spinner fa-pulse"></i> ',
+		'btn_text' : '<i class="fa fa-spinner fa-pulse" aria-hidden="true"></i> ',
 		'btn_replacestyle' : 'prepend', 
 		'btn_selector' : 'button[type=submit]',
 		'delay' : 400,
