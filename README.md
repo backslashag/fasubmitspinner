@@ -1,4 +1,4 @@
-# fasubmitspinner
+# fa.submit.spinner
 ## Purpose
 fa.submit.spinner is a small jQuery based library which adds a nice spinner to disabled submit-buttons. The library uses fontAwesome spinners as default, but you're free to use your own button styles.
 
