@@ -1,0 +1,46 @@
+
+body {
+ 	font-family: Arial, Helvetica, sans-serif;
+ 	font-size: 13px;
+}
+legend {
+	font-weight: bold;
+}
+pre {
+    overflow: auto;
+}
+code, kbd, pre, samp {
+    font-family: monospace,monospace;
+    font-size: 1em;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+button {
+    overflow: visible;
+}
+button, select {
+    text-transform: none;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+    background-color: #e2001a;
+    border: 0 none;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    text-align: center;
+    text-decoration: none;
+}
+button[disabled], html input[disabled] {
+    cursor: default;
+}
+button[disabled], input[type="submit"][disabled] {
+    background-color: #666;
+    color: #cbcbcb;
+    opacity: 0.7;
+}

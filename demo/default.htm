@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="de">
+
+	<head>
+		<link href="https://cdn-backslash.ch/lib/font-awesome/4.3/css/font-awesome.min.css" type="text/css" rel="stylesheet" media="screen"> 
+		<link href="style.css" type="text/css" rel="stylesheet" media="screen"> 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script>	
+		<script type="text/javascript" src="../fa.submit.spinner.min.js"></script>
+		
+		<script>
+$(document).ready(function(){
+	var faSubSp = faSpinner.init({
+		'fontawesome_required' : true,
+		'fontawesome_url' : '//cdn-backslash.ch/lib/font-awesome/4.3/css/font-awesome.min.css',
+		'btn_selector' : '[type=submit]',
+		'timeout' : 100,
+		'delay' : 400,
+		'debugmode' : true,
+		'ajax_listener' : true,
+		'use_attribute_definition' : true,
+		'use_ie_fallback' : true,
+		'ie_fallback_version' : 9,
+		'ie_fallback_btn_text' : '<img src="spiffygif_22x22.gif"/> ',
+		'ie_fallback_btn_replacestyle': 'prepend'
+	});
+	faSubSp.onload();
+	
+		
+	$('#testform,#testforminline, #testforminline2').on('submit', function(){
+		$('button[type=submit]').prop("disabled", true);
+		var to = window.setTimeout(send, 3500);
+		return false;
+	});
+	
+	$('#ajaxForm').on('submit', function(){
+		$('button[type=submit]').prop("disabled", true);
+		var to = window.setTimeout(send, 3500);
+		return false;
+	});
+	
+	
+});
+
+function send() {
+	$('button[type=submit]').removeAttr("disabled");
+	return false;
+}
+
+function createButton(){
+	$('<button type="submit">ajax submit button</button>').appendTo('#ajaxForm fieldset');
+}
+
+
+		</script>
+	</head>
+<body>
+	<h1>faSpinner Examples, basic functionality</h1>
+	<h2>Configuration</h2>
+	<pre class="code">
+$(document).ready(function(){
+	var faSubSp = faSpinner.init({
+		'fontawesome_required' : true,
+		'fontawesome_url' : '//cdn-backslash.ch/lib/font-awesome/4.3/css/font-awesome.min.css',
+		'btn_selector' : '[type=submit]',
+		'timeout' : 100,
+		'delay' : 400,
+		'debugmode' : true,
+		'ajax_listener' : true,
+		'use_attribute_definition' : true,
+		'use_ie_fallback' : true,
+		'ie_fallback_version' : 9,
+		'ie_fallback_btn_text' : '&lt;img src="spiffygif_22x22.gif"/&gt; ',
+		'ie_fallback_btn_replacestyle': 'prepend'
+	});
+	faSubSp.onload();
+});
+	</pre>
+	
+	<form id="testform">
+		<fieldset>
+			<legend>typical form</legend>
+			<h2>Please press submit</h2>
+			<button type="submit" name="send">send</button>
+		</fieldset>
+		
+			
+	</form>
+	<form id="ajaxForm">
+		<fieldset>
+			<legend>Ajax Form</legend>
+			<a href="javascript:createButton();">Button erstellen</a>
+		</fieldset>
+	</form>
+	
+	<form id="testforminline">
+		<fieldset>
+			<legend>Inline Disabling</legend>
+			<button type="submit" name="send" data-faspinner-enabled="0">send</button>
+			<pre class="code"><code>
+&lt;button type="submit" name="send" 
+	data-faspinner-enabled="0"&gt;send&lt;/button&gt;
+			</code></pre>	
+		</fieldset>
+		
+	</form>
+	
+	<form id="testforminline2">
+		<fieldset>
+			<legend>Inline Attributes</legend>
+			<button type="submit" name="send" data-faspinner-delay="0" data-faspinner-btn_replacestyle="prepend" data-faspinner-ie_fallback_btn_replacestyle="append" data-faspinner-ie_fallback_btn_text=" …wird geladen">send</button>
+			<pre class="code">
+&lt;button type="submit" name="send" 
+	data-faspinner-delay="0" 
+	data-faspinner-btn_replacestyle="prepend" 
+	data-faspinner-ie_fallback_btn_replacestyle="append" 
+	data-faspinner-ie_fallback_btn_text=" …wird geladen"&gt;send&lt;/button&gt;
+			</pre>	
+		</fieldset>	
+	</form>
+	<nav>
+		<h3>other examples</h3>
+		<ul>	
+			<li><a href="default.htm">all</a></li>
+			<li><a href="no_ajax.htm">no ajax</a></li>
+			<li><a href="no_fa.htm">fontAwesome not present</a></li>
+		</ul>
+	</nav>
+</body>	
+</html>
