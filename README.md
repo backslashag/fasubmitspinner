@@ -60,11 +60,14 @@ The current version is **1.0.2**
 ### 1.0.2
 - added ajax listenerd
 - added posibility for inline attributes
+- 
 ### 1.0.1
 - fixes for IE fallback
 - refactoring for debugging output
+- 
 ### 1.0.0
 - initial commit
+- 
 ## Dependencies
 The plugin works with jQuery 1.7+
 
