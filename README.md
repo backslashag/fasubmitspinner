@@ -27,7 +27,7 @@ $(document).ready(function(){
                 'btn_text' : '<i class="fa fa-spinner fa-pulse"></i> ',
                 'use_ie_fallback' : true,
                 'ie_fallback_version' : 9,
-                'ie_fallback_btn_text' : '<img src="spiffygif_22x22.gif"/> ',
+                'ie_fallback_btn_text' : '<img src="spiffygif_22x22.gif" alt="" /> ',
                 'ie_fallback_btn_replacestyle': 'append'
         });
         faSubSp.onload();
