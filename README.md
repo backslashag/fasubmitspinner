@@ -24,7 +24,7 @@ $(document).ready(function(){
                 'fontawesome_url' : '//cdn-backslash.ch/lib/font-awesome/4.3/css/font-awesome.min.css',
                 'btn_selector' : '[type=submit]',
                 'btn_replacestyle' : 'append',
-                'btn_text' : '<i class="fa fa-spinner fa-pulse"></i> ',
+                'btn_text' : '<i class="fa fa-spinner fa-pulse" aria-hidden="true"></i> ',
                 'use_ie_fallback' : true,
                 'ie_fallback_version' : 9,
                 'ie_fallback_btn_text' : '<img src="spiffygif_22x22.gif" alt="" /> ',
