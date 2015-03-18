@@ -40,7 +40,7 @@ $(document).ready(function(){
 | param |	default |	description |
 |----- | ------- | --------- |
 | fontawesome_required |	true |	is fontAwesome library required= |
-| fontawesome_url |	//cdn-backslash.ch/lib/font-awesome/4.3/css/font-awesome.min.css |	Url to fontAwesome. If fontAwesome is required but not present on the page, it will be loaded dynamically. |
+| fontawesome_url |	[CDN-Url](//cdn-backslash.ch/lib/font-awesome/4.3/css/font-awesome.min.css) |	Url to fontAwesome. If fontAwesome is required but not present on the page, it will be loaded dynamically. |
 | btn_text |	<i class="fa fa-spinner fa-pulse"></i> |	button code |
 | btn_replacestyle |	prepend |	How do we use the button code? Possible values: append, prepend, replace |
 | btn_selector |	button[type=submit] |	jQuery selector |
@@ -51,13 +51,7 @@ $(document).ready(function(){
 | delay |	400 |	How long (ms) do we wait before we set the spinner? |
 | timeout |	50 	| Because the script does not set disabled properties of buttons, we check the states periodically.|
 | ajax_listener |	false | If you you use ajax to load forms dynamically or create buttons on-the-fly, you should enable this flag, because otherwise these forms or buttons are not spinnerifyied. Disable it in general because of performance reasons.|
-| use_attribute_definition |	false | You could set params directly on buttons. You have to enable this option and use data-attribtute. These values will overwrite the general config. Params:	
-- data-faspinner-enabled: Soll der Spinner auf dieses Objekt angewendet werden?
-- data-faspinner-delay: individueller Startzeitpunkt des Spinners
-- data-faspinner-btn_text: individueller Button-Text
-- data-faspinner-btn_replacestyle: individuelle Ersetzungsvariante
-- data-faspinner-ie_fallback_btn_text: individueller IE-Ersetztext
-- data-faspinner-ie_fallback_btn_replacestyle: individuelle IE-Ersetzungsvariante |
+| use_attribute_definition |	false | You could set params directly on buttons. You have to enable this option and use data-attribtute. These values will overwrite the general config. Params: data-faspinner-enabled, data-faspinner-delay, data-faspinner-btn_text, data-faspinner-btn_replacestyle, data-faspinner-ie_fallback_btn_text, data-faspinner-ie_fallback_btn_replacestyle |
 | debugmode |	false |	There is some basic debug functionality available. It's written to console, if available|
 
 ## Dependencies
