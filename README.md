@@ -54,8 +54,20 @@ $(document).ready(function(){
 | use_attribute_definition |	false | You could set params directly on buttons. You have to enable this option and use data-attribtute. These values will overwrite the general config. Params: data-faspinner-enabled, data-faspinner-delay, data-faspinner-btn_text, data-faspinner-btn_replacestyle, data-faspinner-ie_fallback_btn_text, data-faspinner-ie_fallback_btn_replacestyle |
 | debugmode |	false |	There is some basic debug functionality available. It's written to console, if available|
 
+## Version
+The current version is **1.0.2**
+## Changelog
+### 1.0.2
+- added ajax listenerd
+- added posibility for inline attributes
+### 1.0.1
+- fixes for IE fallback
+- refactoring for debugging output
+### 1.0.0
+- initial commit
 ## Dependencies
 The plugin works with jQuery 1.7+
+
 Tested in:
 * IE 8 - 11
 * Firefox
