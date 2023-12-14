@@ -3,7 +3,7 @@
 <html lang="de">
 
 	<head>
-		<link href="https://cdn-backslash.ch/lib/font-awesome/4.3/css/font-awesome.min.css" type="text/css" rel="stylesheet" media="screen"> 
+		<link href="https://ext.cdn-backslash.ch/lib/font-awesome/4.7/css/font-awesome.min.css" type="text/css" rel="stylesheet" media="screen"> 
 		<link href="style.css" type="text/css" rel="stylesheet" media="screen"> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script type="text/javascript" src="../fa.submit.spinner.min.js"></script>
@@ -12,17 +12,13 @@
 $(document).ready(function(){
 	var faSubSp = faSpinner.init({
 		'fontawesome_required' : true,
-		'fontawesome_url' : '//cdn-backslash.ch/lib/font-awesome/4.3/css/font-awesome.min.css',
+		'fontawesome_url' : 'https://cdn-backslash.ch/lib/font-awesome/4.3/css/font-awesome.min.css',
 		'btn_selector' : '[type=submit]',
 		'timeout' : 100,
 		'delay' : 400,
 		'debugmode' : true,
 		'ajax_listener' : false,
-		'use_attribute_definition' : true,
-		'use_ie_fallback' : true,
-		'ie_fallback_version' : 9,
-		'ie_fallback_btn_text' : '<img src="spiffygif_22x22.gif"/> ',
-		'ie_fallback_btn_replacestyle': 'prepend'
+		'use_attribute_definition' : true
 	});
 	faSubSp.onload();
 		
@@ -55,17 +51,13 @@ function createButton(){
 $(document).ready(function(){
 	var faSubSp = faSpinner.init({
 		'fontawesome_required' : true,
-		'fontawesome_url' : '//cdn-backslash.ch/lib/font-awesome/4.3/css/font-awesome.min.css',
+		'fontawesome_url' : 'https://ext.cdn-backslash.ch/lib/font-awesome/4.7/css/font-awesome.min.css',
 		'btn_selector' : '[type=submit]',
 		'timeout' : 100,
 		'delay' : 400,
 		'debugmode' : true,
 		'ajax_listener' : false,
-		'use_attribute_definition' : true,
-		'use_ie_fallback' : true,
-		'ie_fallback_version' : 9,
-		'ie_fallback_btn_text' : '&lt;img src="spiffygif_22x22.gif"/&gt; ',
-		'ie_fallback_btn_replacestyle': 'prepend'
+		'use_attribute_definition' : true
 	});
 	faSubSp.onload();
 });
