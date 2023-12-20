@@ -10,7 +10,7 @@
  * no responsibility for any damage caused by using this plugin
  * or the documentation provided.
  *
- * Version 1.0.3
+ * Version 1.0.4
  */
 var faSpinner = {
 	defaults : {
@@ -33,7 +33,7 @@ var faSpinner = {
 			}
 		}
 		return this;
-		},
+	},
 	onload : function () {
 		faSpinner.checkDependencies();
 		faSpinner.setButtonFunctions();
@@ -41,80 +41,94 @@ var faSpinner = {
 		if ( faSpinner.defaults.debugmode ){
 			faSpinner.log('faSpinner loaded');	
 		}
-		},
-	
+	},
 	setButtonFunctions : function () {
-		var topSelector 	= faSpinner.defaults.ajax_listener ? document : faSpinner.defaults.btn_selector;
-		var objectSelector 	= faSpinner.defaults.ajax_listener ? faSpinner.defaults.btn_selector : [];
-		
-		$(topSelector).on('click', objectSelector, function(){
-			var $e = $(this);
-			var enabled = true;
-			var startDelay 		= faSpinner.defaults.delay;
-			var newBtnContent 	= faSpinner.defaults.btn_text;
-			var replaceStyle 	= faSpinner.defaults.btn_replacestyle;
-			
-			// check attribute definition, if enabled
-			if ( faSpinner.defaults.use_attribute_definition ) {
-				var attrEnabled = $e.data('faspinner-enabled');
-				if ( typeof attrEnabled != 'undefined' && !attrEnabled ) {
-					enabled = false;
-				};
-				if ( enabled ) {
-					var attrDelay = $e.data('faspinner-delay');
-					if ( typeof attrDelay != 'undefined' && $.isNumeric(attrDelay) ) {
-						startDelay = attrDelay;
-					}
-					var attrBtnText = $e.data('faspinner-btn_text');
-					if ( typeof attrBtnText != 'undefined' ) {
-						newBtnContent = attrBtnText;
-					}
-					var attrReplaceStyle = $e.data('faspinner-btn_replacestyle');
-					if ( typeof attrReplaceStyle != 'undefined' && faSpinner.isValidReplaceStyle(attrReplaceStyle) ) {
-						replaceStyle = attrReplaceStyle;
-					}
-				} 
-			}
-			
-			if ( enabled ) {
-				var disableid = 'sp-' + (new Date().getTime()).toString(36);
-				var existingContent = $(this).text();
-				var btnContent;
-				switch ( replaceStyle ) {
-					case 'prepend':
-						btnContent = newBtnContent.concat(existingContent);
-						break;
-					case 'append':
-						btnContent = existingContent.concat(newBtnContent);
-						break;    
-					default:
-						btnContent = newBtnContent
-						break;
-				}
-				if ( faSpinner.defaults.debugmode ){
-				faSpinner.log(disableid,existingContent,btnContent);
-				}
-				$e.attr('data-disableid', disableid).attr("label", existingContent);
-			
-				var firstRun = window.setTimeout(function(){faSpinner.setSpinner(disableid, btnContent)}, startDelay);
-			}
-		});
+        const onClick = (elem) => {
+            var enabled = true;
+            var startDelay = faSpinner.defaults.delay;
+            var newBtnContent = faSpinner.defaults.btn_text;
+            var replaceStyle = faSpinner.defaults.btn_replacestyle;
+
+            // check attribute definition, if enabled
+            if (faSpinner.defaults.use_attribute_definition) {
+                var attrEnabled = elem.dataset.faspinnerEnabled;
+                if (typeof attrEnabled != 'undefined' && !attrEnabled) {
+                    enabled = false;
+                };
+                if (enabled) {
+                    var attrDelay = elem.dataset.faspinnerDelay;
+                    if (typeof attrDelay != 'undefined' && !isNaN(attrDelay)) {
+                        startDelay = attrDelay;
+                    }
+                    var attrBtnText = elem.dataset.faspinnerBtnText;
+                    if (typeof attrBtnText != 'undefined') {
+                        newBtnContent = attrBtnText;
+                    }
+                    var attrReplaceStyle = elem.dataset.faspinnerBtnReplacestyle;
+                    if (typeof attrReplaceStyle != 'undefined' && faSpinner.isValidReplaceStyle(attrReplaceStyle)) {
+                        replaceStyle = attrReplaceStyle;
+                    }
+                }
+            }
+
+            if (enabled) {
+                var disableid = 'sp-' + (new Date().getTime()).toString(36);
+                var existingContent = elem.textContent;
+                var btnContent;
+                switch (replaceStyle) {
+                    case 'prepend':
+                        btnContent = newBtnContent.concat(existingContent);
+                        break;
+                    case 'append':
+                        btnContent = existingContent.concat(newBtnContent);
+                        break;
+                    default:
+                        btnContent = newBtnContent
+                        break;
+                }
+                if (faSpinner.defaults.debugmode) {
+                    faSpinner.log(disableid, existingContent, btnContent);
+                }
+                elem.dataset.disableid = disableid;
+                elem.setAttribute("label", existingContent);
+
+                var firstRun = window.setTimeout(function() {
+                    faSpinner.setSpinner(disableid, btnContent)
+                }, startDelay);
+            }
+        };
+
+        if (faSpinner.defaults.ajax_listener)  {
+            document.addEventListener('click', (e)=>{
+                if (e.target.matches(faSpinner.defaults.btn_selector)) {
+					onClick(e.target);
+                }
+            }, false);
+        } else {
+            document.querySelectorAll(faSpinner.defaults.btn_selector).forEach(button=>button.addEventListener('click', e=>onClick(e.target), false));
+		}
 	},
 	isValidReplaceStyle : function ( s ) {
-		return $.inArray(s, ['prepend', 'append', 'replace']);
+		const styles = ['prepend', 'append', 'replace'];
+		return styles.includes(s);
 	},
 	setSpinner : function (disableid, btnContent) {
-		if ( $('[data-disableid="' + disableid +'"]').attr('disabled') ) {
-			$('[data-disableid="'+disableid+'"]').html(btnContent);
-			var nextRun = window.setTimeout(function(){faSpinner.checkDisabledButton(disableid)}, faSpinner.defaults.timeout);
+		const elem = document.querySelector(`[data-disableid="${disableid}"]`);
+		if (elem && elem.disabled) {
+			elem.innerHTML = btnContent;
+			const nextRun = window.setTimeout(() => {
+				this.checkDisabledButton(disableid);
+			}, faSpinner.defaults.timeout);
 		}
 	},
 	checkDisabledButton : function (disableid) {
-		if( !$('[data-disableid="' + disableid +'"]').attr('disabled') ){
-			var $e = $('[data-disableid="' + disableid +'"]');			
-			$e.html($e.attr("label"));
+		const elem = document.querySelector(`[data-disableid="${disableid}"]`);
+		if (elem && !elem.disabled) {
+			elem.innerHTML = elem.getAttribute('label');
 		} else {
-			var nextRun = window.setTimeout(function(){faSpinner.checkDisabledButton(disableid)}, faSpinner.defaults.timeout);
+			const nextRun = window.setTimeout(() => {
+				this.checkDisabledButton(disableid);
+			}, faSpinner.defaults.timeout);
 		}
 	},
 	checkDependencies : function () {
@@ -131,10 +145,15 @@ var faSpinner = {
 		}
 	},
 	isFfontAwesomePresent : function () {
-		return $("link[href*='font-awesome']").length > 0 ? true : false;
+		const links = document.querySelectorAll('link[href*="font-awesome"]');
+		return links.length > 0 ? true : false;
 	},
 	loadFontAwesome : function () {
-		$('<link href="' + faSpinner.defaults.fontawesome_url + '" rel="stylesheet" mediatype="screen">').appendTo("head");
+		const link = document.createElement('link');
+		link.href = faSpinner.defaults.fontawesome_url;
+		link.rel = 'stylesheet';
+		link.media = 'screen';
+		document.head.appendChild(link);
 	},
 	log : function (msg) {
 		if ( window.console ) {
