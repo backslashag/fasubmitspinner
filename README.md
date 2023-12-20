@@ -1,6 +1,6 @@
 # fa.submit.spinner
 ## Purpose
-fa.submit.spinner is a small jQuery based library which adds a nice spinner to disabled submit-buttons. The library uses fontAwesome spinners as default, but you're free to use your own button styles.
+fa.submit.spinner is a small library which adds a nice spinner to disabled submit-buttons. The library uses fontAwesome spinners as default, but you're free to use your own button styles.
 
 ## Examples
 You'll find some examples in the demo-folder.
@@ -8,7 +8,7 @@ The library could be included like that:
 ```
 <script src="fa.submit.spinner.min.js"></script>
 <script>
-$(document).ready(function(){
+document.addEventListener("DOMContentLoaded", function(e) {
         var faSubSp = faSpinner.init();
         faSubSp.onload();
 });
@@ -18,7 +18,7 @@ This is a more complex configuration:
 ```
 <script src="https://ext.cdn-backslash.ch/lib/faspinner/latest/fa.submit.spinner.min.js"></script>
 <script>
-$(document).ready(function(){
+document.addEventListener("DOMContentLoaded", function(e) {
         var faSubSp = faSpinner.init({
                 'fontawesome_required' : true,
                 'fontawesome_url' : 'https://ext.cdn-backslash.ch/lib/font-awesome/4.7/css/font-awesome.min.css',
@@ -47,8 +47,10 @@ $(document).ready(function(){
 | debugmode |	false |	There is some basic debug functionality available. It's written to console, if available|
 
 ## Version
-The current version is **1.0.3**
+The current version is **1.0.4**
 ## Changelog
+### 1.0.4
+- removed jQuery dependency
 ### 1.0.3
 - removed IE support
 ### 1.0.2
@@ -63,7 +65,6 @@ The current version is **1.0.3**
 - initial commit
 - 
 ## Dependencies
-The plugin works with jQuery 1.7+
 
 Tested in:
 * Firefox
